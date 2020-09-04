@@ -1,3 +1,8 @@
+/*
+ * With std=c++2a
+ * Usage:
+ * fmt("{} {} {}", "Hello", "World", "!") -> std::string("Hello World !");
+ */
 #pragma once
 #include <string>
 #include <string_view>
