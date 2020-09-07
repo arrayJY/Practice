@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cmath>
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -31,15 +32,17 @@ public:
     }
     return r;
   };
-  void print() {
-    std::stringstream ss;
-    ss << "{ ";
-    for (auto i = _data.begin() + 1; i != _data.end(); i++) {
-      ss << *i << ", ";
+  void print(std::size_t i = 1) {
+    if (i >= _data.size())
+      return;
+    for (unsigned m = log2(i); m > 0; m--) {
+      std::cout << "|\t";
     }
-    ss << "}";
-    std::cout << ss.str();
-  }
+    std::cout << "└─" << _data[i] << "\n";
+
+    print(i * 2);     // dfs left
+    print(i * 2 + 1); // dfs right
+  };
 
 private:
   void _maxHeapify(std::size_t i = 1) {
